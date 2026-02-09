@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Special One | NK Digital</title>
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ff8fa3;
+            --bg: #fff0f3;
+            --text: #4a4a4a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--bg);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: var(--primary);
+            font-size: 20px;
+            animation: float 5s linear infinite;
+            opacity: 0.6;
+            user-select: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.15);
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 { color: var(--primary); font-size: 2rem; margin-bottom: 10px; }
+        
+        /* Message Styling */
+        #typewriter {
+            font-size: 1.1rem;
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 80px; /* Prevents card jumping */
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .cursor {
+            border-right: 3px solid var(--primary);
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.5);
+            background: #c9184a;
+        }
+
+        .btn.hidden { display: none; }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Happy Birthday! 🎂</h1>
+        <p>To my beautiful girlfriend...</p>
+        
+        <div id="typewriter"></div>
+        
+        <button class="btn" id="startBtn" onclick="startTyping()">Read My Heart ❤️</button>
+    </div>
+
+    <script>
+        const message = "You are the most incredible person I have ever known. Every moment with you is a gift, and I am so lucky to call you mine. May your birthday be as radiant and lovely as your soul. I love you! ❤️";
+        const speed = 50; // Typing speed in milliseconds
+        let i = 0;
+
+        function startTyping() {
+            // Hide the button
+            document.getElementById('startBtn').classList.add('hidden');
+            typeWriter();
+        }
+
+        function typeWriter() {
+            if (i < message.length) {
+                document.getElementById("typewriter").innerHTML += message.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        // Floating Hearts Logic
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
